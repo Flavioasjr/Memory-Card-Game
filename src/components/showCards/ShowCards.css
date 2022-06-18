@@ -1,0 +1,14 @@
+.list-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.img {
+  width: 130px;
+}
+
+.card {
+  width: 150px;
+  background: rgb(33, 74, 33);
+}
