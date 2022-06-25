@@ -1,0 +1,23 @@
+:root {
+  --height-header: 80px;
+  --title-header: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #282c35;
+  height: var(--height-header);
+}
+
+.title-header {
+  font-size: var(--title-header);
+}
+
+@media screen and (max-width: 425px) {
+  :root {
+    --height-header: 60px;
+    --title-header: 1.5rem;
+  }
+}

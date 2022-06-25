@@ -1,14 +1,52 @@
+:root {
+  --padding-card: 40px;
+  --width-card: 150px;
+  --width-img: 130px;
+  --font-size-title: 1.5rem;
+}
+
 .list-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
+  justify-content: center;
+  padding: var(--padding-card);
 }
 
 .img {
-  width: 130px;
+  width: var(--width-img);
 }
 
 .card {
-  width: 150px;
-  background: rgb(33, 74, 33);
+  width: var(--width-card);
+  background: #24183A;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.2);
+}
+
+.game-message, .game-message-title {
+  text-align: center;
+  padding: 10px;
+}
+
+.game-message-title {
+  padding-bottom: 2px;
+  font-size: var(--font-size-title);
+}
+
+.message-winner {
+  color: #40bd40;
+}
+
+@media screen and (max-width: 425px) {
+  :root {
+    --padding-card: 10px;
+    --width-card: 105px;
+    --width-img: 105px;
+    --font-size-title: 1.3rem;
+  }
 }

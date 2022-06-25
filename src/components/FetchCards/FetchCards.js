@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { Pokedex } from 'pokeapi-js-wrapper';
 
 export default function FetchCard() {
+  // eslint-disable-next-line radix
+  const [randomIdStart] = useState(parseInt(Math.random() * 100 + 1));
   const ids = [];
 
-  for (let i = 1; i < 13; i += 1) {
+  for (let i = randomIdStart; i < randomIdStart + 15; i += 1) {
     ids.push(i);
   }
 
@@ -22,8 +24,8 @@ export default function FetchCard() {
   const getCards = async (idsData) => {
     const pokedex = new Pokedex({ cacheImages: true });
     const card = await Promise.all(idsData.map((id) => pokedex.getPokemonByName(id)));
-    const imgs = await getImgData(card);
-    setCards(imgs);
+    const cardsData = await getImgData(card);
+    setCards(cardsData);
   };
 
   useEffect(() => {

@@ -3,4 +3,12 @@
   padding: 0;
   outline: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #3e4452;
+  color: white;
 }
