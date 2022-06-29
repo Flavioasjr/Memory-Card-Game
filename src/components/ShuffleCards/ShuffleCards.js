@@ -6,6 +6,6 @@ export default function ShuffleCards(cards) {
       cards[i] = cards[j];
       cards[j] = temp;
     }
-    return cards;
   }
+  return cards;
 }

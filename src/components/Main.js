@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import FetchCard from './FetchCards/FetchCards';
-import ShowCard from './showCards/ShowCard';
-// import HandleGameBoard from './HandleGameBoard/HandleGameBoard';
+import fetchCards from '../API/fetchCards/fetchCards';
+import ShowCards from './showCards/ShowCards';
 import ShuffleCards from './ShuffleCards/ShuffleCards';
 import Header from './Header/Header';
 
 export default function Main() {
-  // Perguntar a kaue o motivo de funcionar usando o setState de um array diferente
-  // Por que nao funciona o setState com cards.
-  // Como transferir isso para outro módulo.
-  // const [shuffledCards, setShuffledCards] = useState([]);
-  let cards = FetchCard();
+  const [cards, setCards] = useState([]);
   const [cardsClicked, setCardsClicked] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
@@ -18,14 +13,21 @@ export default function Main() {
   const [gameOverMessage, setGameOverMessage] = useState('');
 
   const handleClickCards = (e) => {
-    // const data = HandleGameBoard(cards, e);
     setGameOver(cardsClicked.some((value) => value === e.target.id));
     setCardsClicked([...cardsClicked, e.target.id]);
-    // setShuffledCards(ShuffleCards(cards));
-    cards = ShuffleCards(cards);
+    setCards(ShuffleCards(cards));
     if (!gameOver) setScore(score + 1);
     setGameOverMessage('');
   };
+
+  const getfetchCardss = async () => {
+    const cardsAux = await fetchCards();
+    setCards(cardsAux);
+  };
+
+  useEffect(() => {
+    getfetchCardss();
+  }, []);
 
   useEffect(() => {
     if (gameOver) {
@@ -71,7 +73,7 @@ export default function Main() {
     <div>
       <Header score={score} bestScore={bestScore} />
       {!gameOverMessage ? <h2 className="game-message-title">Choose your next Pokemon Card!</h2> : gameOverMessage}
-      <ShowCard cards={cards} handleClickCards={handleClickCards} />
+      <ShowCards cards={cards} handleClickCards={handleClickCards} />
     </div>
   );
 }
