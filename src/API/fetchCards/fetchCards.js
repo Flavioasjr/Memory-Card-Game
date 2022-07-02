@@ -18,14 +18,10 @@ export default async function fetchCards() {
   }
 
   const getPokemons = async (idsData) => {
-    try {
-      const pokedex = new Pokedex({ cacheImages: true });
-      const pokemons = await Promise.all(idsData.map((id) => pokedex.getPokemonByName(id)));
-      const pokemonsData = await getPokemonsData(pokemons);
-      return pokemonsData;
-    } catch (e) {
-      return null;
-    }
+    const pokedex = new Pokedex({ cacheImages: true });
+    const pokemons = await Promise.all(idsData.map((id) => pokedex.getPokemonByName(id)));
+    const pokemonsData = await getPokemonsData(pokemons);
+    return pokemonsData;
   };
 
   const cards = await getPokemons(ids);

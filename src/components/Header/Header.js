@@ -4,7 +4,7 @@ import './Header.css';
 
 export default function Header({ score, bestScore }) {
   return (
-    <header className="header">
+    <header className="header" data-testid="header">
       <div><h1 className="title-header">Memory Game</h1></div>
       <div>
         <p>
